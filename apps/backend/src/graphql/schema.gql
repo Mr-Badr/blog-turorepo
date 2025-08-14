@@ -2,6 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type AuthPayload {
+  accessToken: String!
+  avatar: String
+  id: Float!
+  name: String!
+}
+
 type CommentEntity {
   author: User!
   authorId: Int!
@@ -11,6 +18,14 @@ type CommentEntity {
   post: Post!
   postId: Int!
   updatedAt: DateTime!
+}
+
+input CreateUserInput {
+  avatar: String
+  bio: String
+  email: String!
+  name: String!
+  password: String!
 }
 
 """
@@ -23,6 +38,11 @@ type Like {
   id: Int!
   post: Post!
   user: User!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  signIn(signInInput: SignInInput!): AuthPayload!
 }
 
 type Post {
@@ -46,6 +66,11 @@ type Query {
   like: [Like!]!
   posts: [Post!]!
   users: [User!]!
+}
+
+input SignInInput {
+  email: String!
+  password: String!
 }
 
 type Tag {
